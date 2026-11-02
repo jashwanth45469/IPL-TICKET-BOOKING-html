@@ -1,4 +1,4 @@
-﻿
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPL 2026 Ticket Booking</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <!-- Navigation Bar -->
+    
     <header>
 
         <h2>IPL 2026</h2>
@@ -26,7 +27,7 @@
 
     <main>
 
-        <!-- Hero Section -->
+        
         <section>
 
             <h1>Experience The Stadium Energy Live!</h1>
@@ -41,7 +42,7 @@
         </section>
 
 
-        <!-- About IPL -->
+        
         <section id="about">
 
             <h2>About IPL 2026</h2>
@@ -80,7 +81,7 @@
         </section>
 
 
-        <!-- Match Schedule -->
+        
         <section id="matches">
 
             <h2>IPL Match Schedule</h2>
@@ -174,7 +175,7 @@
         </section>
 
 
-        <!-- Ticket Booking -->
+        
         <section id="booking">
 
             <h2>Book Your IPL Ticket</h2>
@@ -245,7 +246,7 @@
         </section>
 
 
-        <!-- Booking Summary -->
+        
         <section id="summary">
 
             <h2>Booking Summary</h2>
@@ -282,7 +283,7 @@
         </section>
 
 
-        <!-- My Bookings -->
+        
         <section id="mybookings">
 
             <h2>My Ticket Bookings</h2>
@@ -312,7 +313,7 @@
         </section>
 
 
-        <!-- Guidelines -->
+        
         <section id="guidelines">
 
             <h2>Stadium Guidelines</h2>
@@ -341,7 +342,7 @@
     </main>
 
 
-    <!-- Footer -->
+    
     <footer>
 
         <p>
@@ -353,10 +354,9 @@
     </footer>
 
 
-    <!-- JavaScript -->
+    
     <script>
 
-        // Match Details and Ticket Prices
 
         const matches = {
 
@@ -399,8 +399,6 @@
         };
 
 
-        // Select Match
-
         function selectMatch(id) {
 
             document.getElementById("match").value = id;
@@ -411,8 +409,6 @@
 
         }
 
-
-        // Update Booking Summary
 
         function updateSummary() {
 
@@ -460,8 +456,6 @@
         }
 
 
-        // Filter Matches
-
         function filterMatches() {
 
             let filter = document.getElementById("teamFilter").value;
@@ -487,8 +481,6 @@
         }
 
 
-        // Confirm Booking
-
         function bookTicket(event) {
 
             event.preventDefault();
@@ -510,8 +502,6 @@
             let total = price * quantity;
 
 
-            // Remove Empty Message
-
             let table = document.getElementById("bookingRecords");
 
             if (
@@ -523,8 +513,6 @@
 
             }
 
-
-            // Add Booking to My Bookings
 
             let row = table.insertRow();
 
@@ -538,8 +526,6 @@
 
             row.insertCell(4).innerText = "₹" + total;
 
-
-            // Keep Confirmed Booking in Summary
 
             document.getElementById("summaryMatch").innerText =
                 matchName;
@@ -560,17 +546,12 @@
                 "Booking Confirmed Successfully!";
 
 
-            // Show Confirmation
-
             alert("Your IPL ticket booking is confirmed!");
 
-            // IMPORTANT:
-            // Do not reset the form or booking summary here.
+
 
         }
 
-
-        // Initial Booking Summary
 
         updateSummary();
 
