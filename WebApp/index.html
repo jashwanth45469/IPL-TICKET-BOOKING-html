@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPL 2026 Ticket Booking</title>
     <link rel="stylesheet" href="../CSS/styles.css">
+
 </head>
 
 <body>
@@ -179,7 +180,7 @@
 
                 <label for="match">Match</label><br>
 
-                <select id="match" required onchange="updateSummary()">
+                <select id="match" required>
                     <option value="">Select Match</option>
                     <option value="1">RCB vs CSK</option>
                     <option value="2">MI vs KKR</option>
@@ -191,7 +192,7 @@
 
                 <label for="stand">Stand Category</label><br>
 
-                <select id="stand" required onchange="updateSummary()">
+                <select id="stand" required>
                     <option value="">Select Stand</option>
                     <option value="General">General</option>
                     <option value="Premium">Premium</option>
@@ -203,8 +204,7 @@
                 <label for="quantity">Number of Tickets</label><br>
 
                 <input type="number" id="quantity"
-                    min="1" max="10" value="1"
-                    required oninput="updateSummary()">
+                    min="1" max="10" value="1" required>
 
                 <br><br>
 
@@ -342,6 +342,7 @@
     <!-- Match and Booking JavaScript -->
     <script>
 
+        // Match Details and Ticket Prices
         const matches = {
 
             1: {
@@ -382,6 +383,7 @@
 
         };
 
+
         // Select Match Function
         function selectMatch(id) {
 
@@ -396,49 +398,6 @@
 
         }
 
-        // Update Booking Summary
-        function updateSummary() {
-
-            let matchId = document.getElementById("match").value;
-
-            let stand = document.getElementById("stand").value;
-
-            let quantity = Number(
-                document.getElementById("quantity").value
-            ) || 0;
-
-            let matchName = "Not Selected";
-
-            let price = 0;
-
-            if (matches[matchId]) {
-
-                matchName = matches[matchId].name;
-
-                if (stand) {
-                    price = matches[matchId].prices[stand];
-                }
-
-            }
-
-            let total = price * quantity;
-
-            document.getElementById("summaryMatch").innerText =
-                matchName;
-
-            document.getElementById("summaryStand").innerText =
-                stand || "Not Selected";
-
-            document.getElementById("price").innerText =
-                price;
-
-            document.getElementById("summaryQuantity").innerText =
-                quantity;
-
-            document.getElementById("total").innerText =
-                total;
-
-        }
 
         // Filter Matches
         function filterMatches() {
@@ -460,6 +419,7 @@
             });
 
         }
+
 
         // Confirm Booking
         function bookTicket(event) {
@@ -521,12 +481,9 @@
 
         }
 
-        // Initialize Booking Summary
-        updateSummary();
-
     </script>
 
-    <!-- Activity 5 External JavaScript File -->
+    <!-- External JavaScript File -->
     <script src="../JS/app.js"></script>
 
 </body>
