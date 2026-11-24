@@ -1,7 +1,7 @@
 
 /* =========================================
    IPL 2026 TICKET BOOKING WEBSITE
-   COMPLETE CSS STYLING
+   ACTIVITY 5 + ACTIVITY 7 + ACTIVITY 8
 ========================================= */
 
 /* 1. CSS VARIABLES */
@@ -17,17 +17,20 @@
     --muted: #778397;
     --border: #e1e6ee;
     --success: #128454;
-    --danger: #dc3545;
     --shadow: 0 8px 30px rgba(7, 20, 38, 0.08);
 }
 
-/* 2. GLOBAL STYLING */
+/* 2. RESET AND GLOBAL STYLES */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
     scroll-behavior: smooth;
+    scroll-padding-top: 25px;
 }
 
 body {
@@ -39,11 +42,6 @@ body {
 
 a {
     text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style-position: inside;
 }
 
 button,
@@ -54,7 +52,6 @@ select {
 
 button {
     cursor: pointer;
-    transition: 0.3s ease;
 }
 
 section {
@@ -63,8 +60,7 @@ section {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
     color: var(--primary);
     line-height: 1.3;
 }
@@ -74,66 +70,77 @@ h2 {
     margin-bottom: 25px;
 }
 
-/* 3. HEADER */
+p {
+    line-height: 1.7;
+}
 
-header {
+/* 3. HEADER AND NAVIGATION - FLEXBOX */
+
+.site-header {
+    width: 100%;
     background: var(--primary);
     color: var(--white);
     padding: 18px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
 }
 
-header h2 {
+.logo {
     color: var(--accent);
     font-size: 27px;
     margin: 0;
 }
 
-/* 4. NAVIGATION BAR */
-
-nav {
+.site-header nav {
     display: flex;
     align-items: center;
-    gap: 25px;
+    justify-content: flex-end;
     flex-wrap: wrap;
+    gap: 22px;
 }
 
-nav a {
+.site-header nav a {
     color: var(--white);
     font-size: 15px;
     font-weight: 600;
     transition: 0.3s;
 }
 
-nav a:hover {
+.site-header nav a:hover {
     color: var(--accent);
 }
 
-nav .nav-book {
+.site-header nav .nav-book {
     background: var(--accent);
     color: var(--primary);
     padding: 10px 18px;
     border-radius: 6px;
 }
 
-nav .nav-book:hover {
+.site-header nav .nav-book:hover {
     background: var(--accent-light);
     color: var(--primary);
 }
 
-/* 5. HERO SECTION */
+/* Hamburger button */
 
-#home,
+.hamburger {
+    display: none;
+    background: var(--accent);
+    color: var(--primary);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 13px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 4. HERO SECTION */
+
 .hero {
     min-height: 430px;
-    padding: 100px 7%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     background: linear-gradient(
         120deg,
         #071426,
@@ -141,43 +148,48 @@ nav .nav-book:hover {
         #183c63
     );
     color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 90px 7%;
 }
 
-#home h1,
 .hero h1 {
     color: var(--white);
-    font-size: 48px;
+    font-size: 46px;
     max-width: 750px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
-#home p,
 .hero p {
     color: #d5dfec;
     font-size: 18px;
     margin-bottom: 25px;
 }
 
-#home a,
-.hero a {
-    display: inline-block;
-    width: fit-content;
-    margin-right: 12px;
-    margin-top: 10px;
-    padding: 13px 25px;
-    border-radius: 6px;
-    background: var(--accent);
-    color: var(--primary);
-    font-weight: bold;
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-#home a:hover,
-.hero a:hover {
+.hero-actions a {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 13px 24px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.hero-actions a:hover {
     background: var(--accent-light);
     transform: translateY(-2px);
 }
 
-/* 6. ABOUT IPL SECTION */
+/* 5. ABOUT SECTION */
 
 #about {
     background: var(--white);
@@ -185,102 +197,183 @@ nav .nav-book:hover {
 
 #about p {
     color: var(--muted);
-    font-size: 16px;
     max-width: 900px;
     margin-bottom: 25px;
 }
 
 #about h3 {
+    font-size: 21px;
     margin-top: 25px;
     margin-bottom: 12px;
-    font-size: 21px;
 }
 
 #about ul {
-    color: var(--text);
+    list-style-position: inside;
     line-height: 2;
-}
-
-/* 7. POPULAR TEAMS AND VENUES */
-
-#about li {
-    padding-left: 5px;
 }
 
 #about li::marker {
     color: var(--accent);
 }
 
-/* 8. MATCH SCHEDULE */
+/* 6. MATCH SCHEDULE SECTION */
 
 #matches {
     background: var(--background);
 }
 
-#matches h2 {
+.match-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
     margin-bottom: 25px;
 }
 
-#teamFilter {
-    width: 250px;
-    max-width: 100%;
-    padding: 12px;
-    margin-bottom: 25px;
+.filter-control {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-control label {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.filter-control select {
+    padding: 11px 14px;
     border: 1px solid var(--border);
     border-radius: 6px;
     background: var(--white);
     color: var(--text);
-    font-size: 15px;
+    font-size: 14px;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+/* 7. GRID AND LIST VIEW BUTTONS */
+
+.view-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    padding: 10px 17px;
     background: var(--white);
-    box-shadow: var(--shadow);
-    border-radius: 10px;
-    overflow: hidden;
+    color: var(--primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-thead {
+.view-btn:hover,
+.view-btn.active {
     background: var(--primary);
     color: var(--white);
 }
 
-th {
-    padding: 16px 14px;
-    text-align: left;
+/* 8. MATCH CARDS - CSS GRID */
+
+.match-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.match-card {
+    min-width: 0;
+    background: var(--white);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.match-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(7, 20, 38, 0.13);
+}
+
+.match-number {
+    display: inline-block;
+    background: #fff4d8;
+    color: #8b6415;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.match-card h3 {
+    font-size: 23px;
+    margin: 12px 0;
+}
+
+.match-card p {
+    color: var(--muted);
+    margin: 7px 0;
     font-size: 14px;
 }
 
-td {
-    padding: 15px 14px;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-}
-
-tbody tr:hover {
-    background: #f8fafd;
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* 9. BOOK BUTTONS */
+/* Book ticket button */
 
 .book-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
     background: var(--accent);
     color: var(--primary);
     border: none;
-    padding: 9px 16px;
-    border-radius: 5px;
+    border-radius: 6px;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .book-btn:hover {
     background: var(--accent-light);
     transform: translateY(-2px);
+}
+
+.match-card.hidden {
+    display: none;
+}
+
+#noMatches {
+    margin-top: 20px;
+    color: var(--muted);
+}
+
+/* 9. MATCH LIST VIEW */
+
+.match-grid.list-view {
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.match-grid.list-view .match-card {
+    display: grid;
+    grid-template-columns: 100px 1.2fr repeat(3, 1fr) 1.2fr 1.2fr 130px;
+    align-items: center;
+    gap: 12px;
+    padding: 18px;
+}
+
+.match-grid.list-view .match-card h3,
+.match-grid.list-view .match-card p,
+.match-grid.list-view .match-card .book-btn {
+    margin: 0;
+}
+
+.match-grid.list-view .match-card h3 {
+    font-size: 16px;
+}
+
+.match-grid.list-view .match-card p {
+    font-size: 12px;
 }
 
 /* 10. BOOKING FORM */
@@ -290,6 +383,7 @@ tbody tr:last-child td {
 }
 
 #booking form {
+    width: 100%;
     max-width: 750px;
     background: var(--background);
     padding: 30px;
@@ -307,11 +401,13 @@ tbody tr:last-child td {
 
 #booking input,
 #booking select {
+    display: block;
     width: 100%;
     padding: 13px;
     border: 1px solid var(--border);
     border-radius: 6px;
     background: var(--white);
+    color: var(--text);
     font-size: 15px;
     outline: none;
     transition: 0.3s;
@@ -323,8 +419,7 @@ tbody tr:last-child td {
     box-shadow: 0 0 0 3px rgba(229, 173, 56, 0.15);
 }
 
-#booking button,
-#booking input[type="submit"] {
+#booking form button {
     margin-top: 25px;
     padding: 13px 25px;
     background: var(--primary);
@@ -333,10 +428,10 @@ tbody tr:last-child td {
     border-radius: 6px;
     font-size: 15px;
     font-weight: bold;
+    transition: 0.3s;
 }
 
-#booking button:hover,
-#booking input[type="submit"]:hover {
+#booking form button:hover {
     background: var(--secondary);
 }
 
@@ -345,10 +440,6 @@ tbody tr:last-child td {
 #summary {
     background: #eef2f8;
     padding: 40px 7%;
-}
-
-#summary h2 {
-    color: var(--primary);
 }
 
 #summary p {
@@ -363,7 +454,6 @@ tbody tr:last-child td {
     margin-bottom: 12px;
     color: var(--text);
     font-weight: 600;
-    box-shadow: 0 3px 12px rgba(7, 20, 38, 0.04);
 }
 
 #summary span {
@@ -378,7 +468,6 @@ tbody tr:last-child td {
 }
 
 #summary h3 {
-    color: var(--primary);
     font-size: 23px;
 }
 
@@ -387,7 +476,12 @@ tbody tr:last-child td {
     font-size: 25px;
 }
 
-/* Activity 7: Summary update animation */
+#bookingStatus {
+    color: var(--success);
+    font-weight: bold;
+}
+
+/* Activity 7 summary animation */
 
 #summary.updated {
     animation: summaryUpdate 0.5s ease;
@@ -407,40 +501,75 @@ tbody tr:last-child td {
     }
 }
 
-/* 12. MY BOOKINGS SECTION */
+/* 12. MY BOOKINGS */
 
 #mybookings {
     background: var(--white);
 }
 
 #mybookings table {
-    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-/* 13. BOOKING STATUS */
-
-#bookingStatus {
-    color: var(--success);
-    font-weight: bold;
-    margin-top: 15px;
+#mybookings th {
+    background: var(--primary);
+    color: var(--white);
+    text-align: left;
+    padding: 15px;
 }
 
-/* 14. GUIDELINES SECTION */
+#mybookings td {
+    padding: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+#mybookings tbody tr:hover {
+    background: #f8fafd;
+}
+
+/* 13. GUIDELINES - CSS GRID */
 
 #guidelines {
     background: var(--background);
 }
 
-#guidelines ul {
-    line-height: 2.2;
-    color: var(--text);
+.guidelines-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 25px;
 }
 
-#guidelines li::marker {
-    color: var(--accent);
+.guideline-card {
+    min-width: 0;
+    background: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
 }
 
-/* 15. FOOTER */
+.guideline-card:hover {
+    transform: translateY(-4px);
+}
+
+.guideline-card h3 {
+    font-size: 19px;
+    margin-bottom: 12px;
+}
+
+.guideline-card p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* 14. FOOTER */
 
 footer {
     background: var(--primary);
@@ -454,22 +583,22 @@ footer p {
     font-size: 14px;
 }
 
-/* 16. TOAST NOTIFICATION */
+/* 15. TOAST NOTIFICATION */
 
 #toast {
     visibility: hidden;
+    position: fixed;
+    z-index: 2000;
+    right: 30px;
+    bottom: 30px;
     min-width: 250px;
     max-width: 90%;
+    padding: 16px 22px;
     background: var(--primary);
     color: var(--white);
     text-align: center;
     border: 1px solid var(--accent);
     border-radius: 8px;
-    padding: 16px 22px;
-    position: fixed;
-    z-index: 2000;
-    bottom: 30px;
-    right: 30px;
     font-size: 14px;
     font-weight: 600;
     opacity: 0;
@@ -482,20 +611,24 @@ footer p {
     bottom: 45px;
 }
 
-/* 17. RESPONSIVE DESIGN - TABLETS */
+/* =========================================
+   16. TABLET RESPONSIVENESS
+========================================= */
 
 @media (max-width: 900px) {
 
-    header {
-        flex-direction: column;
-        align-items: flex-start;
+    .site-header {
+        padding: 18px 5%;
     }
 
-    nav {
-        gap: 15px;
+    .site-header nav {
+        gap: 12px;
     }
 
-    #home h1,
+    .site-header nav a {
+        font-size: 13px;
+    }
+
     .hero h1 {
         font-size: 38px;
     }
@@ -504,60 +637,158 @@ footer p {
         padding: 50px 5%;
     }
 
-    table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+    .match-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .guidelines-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .match-grid.list-view .match-card {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
 }
 
-/* 18. RESPONSIVE DESIGN - MOBILE */
+/* =========================================
+   17. MOBILE RESPONSIVENESS
+========================================= */
 
 @media (max-width: 600px) {
 
-    header {
-        padding: 18px 5%;
+    /* Mobile header */
+
+    .site-header {
+        position: relative;
+        padding: 16px 5%;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
 
-    header h2 {
+    .logo {
         font-size: 23px;
     }
 
-    nav {
-        gap: 12px;
+    .hamburger {
+        display: block;
     }
 
-    nav a {
-        font-size: 13px;
+    .site-header nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--secondary);
+        padding: 10px;
+        border-radius: 8px;
     }
 
-    #home,
+    .site-header nav.show {
+        display: flex;
+    }
+
+    .site-header nav a {
+        display: block;
+        padding: 12px;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .site-header nav a:last-child {
+        border-bottom: none;
+    }
+
+    /* Hero */
+
     .hero {
         min-height: 350px;
-        padding: 65px 5%;
+        padding: 60px 5%;
     }
 
-    #home h1,
     .hero h1 {
         font-size: 30px;
     }
 
-    #home p,
     .hero p {
         font-size: 15px;
     }
 
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Sections */
+
     section {
-        padding: 35px 18px;
+        padding: 38px 18px;
     }
 
     h2 {
         font-size: 24px;
     }
 
+    /* Match controls */
+
+    .match-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-control {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-control select {
+        width: 100%;
+    }
+
+    .view-controls {
+        width: 100%;
+    }
+
+    .view-btn {
+        flex: 1;
+    }
+
+    /* Match cards */
+
+    .match-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .match-card {
+        padding: 20px;
+    }
+
+    /* List view on mobile */
+
+    .match-grid.list-view .match-card {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .match-grid.list-view .match-card h3 {
+        font-size: 20px;
+    }
+
+    .match-grid.list-view .match-card p {
+        font-size: 14px;
+    }
+
+    /* Booking form */
+
     #booking form {
         padding: 20px;
     }
+
+    /* Summary */
 
     #summary {
         padding: 35px 18px;
@@ -572,15 +803,37 @@ footer p {
         font-size: 23px;
     }
 
+    /* Guidelines */
+
+    .guidelines-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .guideline-card {
+        padding: 20px;
+    }
+
+    /* My bookings table */
+
+    #mybookings table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    /* Toast */
+
     #toast {
         left: 15px;
         right: 15px;
         bottom: 20px;
-        min-width: auto;
+        min-width: 0;
         max-width: none;
     }
 
     #toast.show {
         bottom: 35px;
     }
+
 }
