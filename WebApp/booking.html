@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPL Ticket Booking</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f2f4f8;
+            padding: 30px 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #142b55;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 7px;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        .price-box {
+            background: #f0f4ff;
+            padding: 18px;
+            border-radius: 8px;
+            margin-top: 20px;
+            line-height: 2;
+        }
+
+        .price-box h3 {
+            color: #142b55;
+            margin-bottom: 8px;
+        }
+
+        .total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #087b42;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background: #142b55;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #254b85;
+        }
+
+        .success {
+            display: none;
+            margin-top: 20px;
+            padding: 18px;
+            background: #e5f8eb;
+            color: #176b35;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #142b55;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>IPL Ticket Booking</h1>
+    <p class="subtitle">Book your favourite IPL match tickets</p>
+
+    <form id="bookingForm">
+
+        <label>Full Name</label>
+        <input type="text" id="name" required>
+
+        <label>Email Address</label>
+        <input type="email" id="email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" id="phone" pattern="[0-9]{10}" maxlength="10" required>
+
+        <label>Select Match</label>
+        <select id="match" required>
+            <option value="">Select Match</option>
+            <option value="RCB vs CSK">RCB vs CSK</option>
+            <option value="MI vs KKR">MI vs KKR</option>
+            <option value="RCB vs MI">RCB vs MI</option>
+            <option value="CSK vs SRH">CSK vs SRH</option>
+        </select>
+
+        <label>Match Date</label>
+        <input type="date" id="date" required>
+
+        <label>Select Stand</label>
+        <select id="stand" required>
+            <option value="">Select Stand</option>
+            <option value="General">General - ₹800</option>
+            <option value="Premium">Premium - ₹1500</option>
+            <option value="VIP">VIP - ₹3000</option>
+        </select>
+
+        <label>Number of Tickets</label>
+        <input type="number" id="tickets" min="1" max="10" value="1" required>
+
+        <div class="price-box">
+            <h3>Booking Summary</h3>
+            <p>Match: <span id="summaryMatch">Not Selected</span></p>
+            <p>Stand: <span id="summaryStand">Not Selected</span></p>
+            <p>Price per ticket: ₹<span id="summaryPrice">0</span></p>
+            <p>Number of tickets: <span id="summaryTickets">1</span></p>
+            <p class="total">Total: ₹<span id="totalPrice">0</span></p>
+        </div>
+
+        <button type="submit">Confirm Booking</button>
+
+    </form>
+
+    <div class="success" id="successMessage">
+        <h3>Booking Confirmed!</h3>
+        <p>Your tickets have been booked successfully.</p>
+        <p id="bookingDetails"></p>
+    </div>
+
+    <a href="index.html" class="back">← Back to Home</a>
+
+</div>
+
+<script>
+
+    const match = document.getElementById("match");
+    const stand = document.getElementById("stand");
+    const tickets = document.getElementById("tickets");
+
+    const prices = {
+        General: 800,
+        Premium: 1500,
+        VIP: 3000
+    };
+
+    function updateSummary() {
+
+        let selectedMatch = match.value || "Not Selected";
+        let selectedStand = stand.value || "Not Selected";
+        let price = prices[stand.value] || 0;
+        let quantity = Number(tickets.value) || 0;
+        let total = price * quantity;
+
+        document.getElementById("summaryMatch").textContent = selectedMatch;
+        document.getElementById("summaryStand").textContent = selectedStand;
+        document.getElementById("summaryPrice").textContent = price;
+        document.getElementById("summaryTickets").textContent = quantity;
+        document.getElementById("totalPrice").textContent = total;
+    }
+
+    match.addEventListener("change", updateSummary);
+    stand.addEventListener("change", updateSummary);
+    tickets.addEventListener("input", updateSummary);
+
+    updateSummary();
+
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const booking = {
+            id: Date.now(),
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            match: match.value,
+            date: document.getElementById("date").value,
+            stand: stand.value,
+            price: prices[stand.value],
+            tickets: Number(tickets.value),
+            total: prices[stand.value] * Number(tickets.value)
+        };
+
+        let bookings = JSON.parse(localStorage.getItem("iplBookings")) || [];
+
+        bookings.push(booking);
+
+        localStorage.setItem("iplBookings", JSON.stringify(bookings));
+
+        document.getElementById("bookingDetails").textContent =
+            booking.match + " | " + booking.stand +
+            " | " + booking.tickets + " Tickets | ₹" + booking.total;
+
+        document.getElementById("successMessage").style.display = "block";
+
+        document.getElementById("bookingForm").reset();
+
+        updateSummary();
+
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: "smooth"
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
