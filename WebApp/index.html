@@ -6,34 +6,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPL 2026 Ticket Booking</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 
 <body>
 
-
-
-    
-
+    <!-- Header and Navigation -->
     <header>
-
         <h2>IPL 2026</h2>
 
-        <nav>   
+        <nav>
             <a href="#matches">Matches</a>
-            <a href="#booking">Book Ticket</a>
+            <a href="#booking" class="nav-book">Book Ticket</a>
             <a href="#mybookings">My Bookings</a>
             <a href="#guidelines">Guidelines</a>
             <a href="booking.html">Book IPL Tickets</a>
         </nav>
-
     </header>
 
     <main>
 
-
+        <!-- Hero Section -->
         <section>
-
             <h1>Experience The Stadium Energy Live!</h1>
 
             <p>
@@ -41,12 +35,10 @@
             </p>
 
             <a href="#matches">View Schedule</a>
-            <a href="#booking">Book Ticket</a>
-
+            <a href="#booking" class="hero-book">Book Ticket</a>
         </section>
 
-
-
+        <!-- About IPL -->
         <section id="about">
 
             <h2>About IPL 2026</h2>
@@ -84,8 +76,7 @@
 
         </section>
 
-
-
+        <!-- Match Schedule -->
         <section id="matches">
 
             <h2>IPL Match Schedule</h2>
@@ -93,14 +84,12 @@
             <label>Filter by Team:</label>
 
             <select id="teamFilter" onchange="filterMatches()">
-
                 <option value="all">All Teams</option>
                 <option value="RCB">RCB</option>
                 <option value="CSK">CSK</option>
                 <option value="MI">MI</option>
                 <option value="KKR">KKR</option>
                 <option value="SRH">SRH</option>
-
             </select>
 
             <table border="1">
@@ -129,7 +118,8 @@
                         <td>₹2000</td>
                         <td>₹5000</td>
                         <td>
-                            <button onclick="selectMatch('1')">Book</button>
+                            <button type="button" class="book-btn"
+                                onclick="selectMatch('1')">Book</button>
                         </td>
                     </tr>
 
@@ -142,7 +132,8 @@
                         <td>₹2200</td>
                         <td>₹5500</td>
                         <td>
-                            <button onclick="selectMatch('2')">Book</button>
+                            <button type="button" class="book-btn"
+                                onclick="selectMatch('2')">Book</button>
                         </td>
                     </tr>
 
@@ -155,7 +146,8 @@
                         <td>₹1800</td>
                         <td>₹4500</td>
                         <td>
-                            <button onclick="selectMatch('3')">Book</button>
+                            <button type="button" class="book-btn"
+                                onclick="selectMatch('3')">Book</button>
                         </td>
                     </tr>
 
@@ -168,18 +160,17 @@
                         <td>₹2000</td>
                         <td>₹5000</td>
                         <td>
-                            <button onclick="selectMatch('4')">Book</button>
+                            <button type="button" class="book-btn"
+                                onclick="selectMatch('4')">Book</button>
                         </td>
                     </tr>
 
                 </tbody>
-
             </table>
 
         </section>
 
-
-
+        <!-- Booking Form -->
         <section id="booking">
 
             <h2>Book Your IPL Ticket</h2>
@@ -189,13 +180,11 @@
                 <label for="match">Match</label><br>
 
                 <select id="match" required onchange="updateSummary()">
-
                     <option value="">Select Match</option>
                     <option value="1">RCB vs CSK</option>
                     <option value="2">MI vs KKR</option>
                     <option value="3">SRH vs RCB</option>
                     <option value="4">CSK vs MI</option>
-
                 </select>
 
                 <br><br>
@@ -203,12 +192,10 @@
                 <label for="stand">Stand Category</label><br>
 
                 <select id="stand" required onchange="updateSummary()">
-
                     <option value="">Select Stand</option>
                     <option value="General">General</option>
                     <option value="Premium">Premium</option>
                     <option value="VIP">VIP</option>
-
                 </select>
 
                 <br><br>
@@ -249,8 +236,7 @@
 
         </section>
 
-
-
+        <!-- Booking Summary -->
         <section id="summary">
 
             <h2>Booking Summary</h2>
@@ -286,8 +272,7 @@
 
         </section>
 
-
-
+        <!-- My Bookings -->
         <section id="mybookings">
 
             <h2>My Ticket Bookings</h2>
@@ -305,19 +290,16 @@
                 </thead>
 
                 <tbody id="bookingRecords">
-
                     <tr>
                         <td colspan="5">No bookings yet.</td>
                     </tr>
-
                 </tbody>
 
             </table>
 
         </section>
 
-
-
+        <!-- Stadium Guidelines -->
         <section id="guidelines">
 
             <h2>Stadium Guidelines</h2>
@@ -345,23 +327,20 @@
 
     </main>
 
-
-
+    <!-- Footer -->
     <footer>
-
         <p>
             © 2026 IPL Ticket Booking Website. All Rights Reserved.
         </p>
 
         <p>Made for Cricket Fans ❤️</p>
-
     </footer>
-    <body>in
 
+    <!-- Toast Notification -->
+    <div id="toast" role="status" aria-live="polite"></div>
 
-
+    <!-- Match and Booking JavaScript -->
     <script>
-
 
         const matches = {
 
@@ -403,18 +382,21 @@
 
         };
 
-
+        // Select Match Function
         function selectMatch(id) {
 
             document.getElementById("match").value = id;
 
             updateSummary();
 
-            document.getElementById("booking").scrollIntoView();
+            document.getElementById("booking").scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
         }
 
-
+        // Update Booking Summary
         function updateSummary() {
 
             let matchId = document.getElementById("match").value;
@@ -434,9 +416,7 @@
                 matchName = matches[matchId].name;
 
                 if (stand) {
-
                     price = matches[matchId].prices[stand];
-
                 }
 
             }
@@ -460,7 +440,7 @@
 
         }
 
-
+        // Filter Matches
         function filterMatches() {
 
             let filter = document.getElementById("teamFilter").value;
@@ -472,20 +452,16 @@
                 let teams = row.cells[1].innerText;
 
                 if (filter === "all" || teams.includes(filter)) {
-
                     row.style.display = "";
-
                 } else {
-
                     row.style.display = "none";
-
                 }
 
             });
 
         }
 
-
+        // Confirm Booking
         function bookTicket(event) {
 
             event.preventDefault();
@@ -506,31 +482,22 @@
 
             let total = price * quantity;
 
-
             let table = document.getElementById("bookingRecords");
 
             if (
                 table.rows.length === 1 &&
                 table.rows[0].cells.length === 1
             ) {
-
                 table.innerHTML = "";
-
             }
-
 
             let row = table.insertRow();
 
             row.insertCell(0).innerText = name;
-
             row.insertCell(1).innerText = matchName;
-
             row.insertCell(2).innerText = stand;
-
             row.insertCell(3).innerText = quantity;
-
             row.insertCell(4).innerText = "₹" + total;
-
 
             document.getElementById("summaryMatch").innerText =
                 matchName;
@@ -550,18 +517,17 @@
             document.getElementById("bookingStatus").innerText =
                 "Booking Confirmed Successfully!";
 
-
             alert("Your IPL ticket booking is confirmed!");
-
-
 
         }
 
-
+        // Initialize Booking Summary
         updateSummary();
 
     </script>
 
-</body>
+    <!-- Activity 5 External JavaScript File -->
+    <script src="../JS/app.js"></script>
 
+</body>
 </html>

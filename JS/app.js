@@ -1,61 +1,72 @@
+
+// Reusable Toast Notification Function
 function showToast(message) {
     let toast = document.getElementById("toast");
 
-    if (!toast) {
-        toast = document.createElement("div");
-        toast.id = "toast";
-        document.body.appendChild(toast);
-    }
+    toast.innerText = message;
+    toast.classList.add("show");
 
-    toast.textContent = message;
-
-    toast.style.position = "fixed";
-    toast.style.bottom = "25px";
-    toast.style.right = "25px";
-    toast.style.background = "#142b55";
-    toast.style.color = "white";
-    toast.style.padding = "15px 25px";
-    toast.style.borderRadius = "8px";
-    toast.style.zIndex = "9999";
-    toast.style.opacity = "1";
-    toast.style.transition = "opacity 0.5s";
-
-    clearTimeout(window.toastTimer);
-
-    window.toastTimer = setTimeout(function () {
-        toast.style.opacity = "0";
+    setTimeout(function () {
+        toast.classList.remove("show");
     }, 3000);
 }
 
+// Smooth Scrolling Function
+function smoothScrollToBooking() {
+    let bookingSection = document.getElementById("booking");
+
+    if (bookingSection) {
+        bookingSection.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+}
+
+// DOM Manipulation and Event Handling
 document.addEventListener("DOMContentLoaded", function () {
 
-    const bookButtons = document.querySelectorAll(".book-btn");
+    // Select all Book buttons in the match schedule
+    let bookButtons = document.querySelectorAll(".book-btn");
 
+    // Add click event to Book buttons
     bookButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
 
-        button.addEventListener("click", function (event) {
+            showToast("Redirecting to Ticket Booking!");
 
-            const bookingForm = document.getElementById("bookingForm");
-
-            if (bookingForm) {
-                event.preventDefault();
-
-                bookingForm.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-                showToast("Redirecting to booking form!");
-            } else {
-                showToast("Opening ticket booking page!");
-
-                setTimeout(function () {
-                    window.location.href = "booking.html";
-                }, 700);
-            }
+            smoothScrollToBooking();
 
         });
-
     });
+
+    // Hero section Book button
+    let heroButtons = document.querySelectorAll(".hero-book");
+
+    heroButtons.forEach(function (button) {
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            showToast("Let's Book Your IPL Tickets!");
+
+            smoothScrollToBooking();
+
+        });
+    });
+
+    // Navigation Book button
+    let navBook = document.querySelector(".nav-book");
+
+    if (navBook) {
+        navBook.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            showToast("Opening Booking Section!");
+
+            smoothScrollToBooking();
+
+        });
+    }
 
 });
